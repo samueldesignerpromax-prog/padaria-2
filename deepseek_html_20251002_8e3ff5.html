@@ -1,0 +1,1064 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Padaria Sabor & Tradição</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Reset e estilos básicos */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --primary-color: #8B4513;
+            --secondary-color: #D2691E;
+            --accent-color: #F4A460;
+            --light-color: #FFF8DC;
+            --dark-color: #5D4037;
+            --text-color: #333;
+            --white: #fff;
+        }
+        
+        body {
+            background-color: var(--light-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* Header */
+        header {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            transition: all 0.3s ease;
+        }
+        
+        .header-scrolled {
+            padding: 10px 0;
+            background-color: rgba(139, 69, 19, 0.95);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: var(--white);
+        }
+        
+        .logo h1 {
+            font-size: 1.8rem;
+            margin-left: 10px;
+        }
+        
+        .logo-icon {
+            font-size: 2rem;
+            transition: transform 0.5s;
+        }
+        
+        .logo:hover .logo-icon {
+            transform: rotate(15deg) scale(1.1);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 20px;
+        }
+        
+        nav ul li a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            padding: 5px 10px;
+            border-radius: 4px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: -100%;
+            width: 100%;
+            height: 2px;
+            background-color: var(--accent-color);
+            transition: left 0.3s;
+        }
+        
+        nav ul li a:hover::after {
+            left: 0;
+        }
+        
+        nav ul li a:hover {
+            color: var(--accent-color);
+        }
+        
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--white);
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1509440159596-0249088772ff?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: var(--white);
+            padding: 100px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(139,69,19,0.3), rgba(210,105,30,0.3));
+            z-index: 1;
+        }
+        
+        .hero .container {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto 30px;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease 0.2s;
+        }
+        
+        .hero-buttons {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease 0.4s;
+        }
+        
+        .hero.animated h2,
+        .hero.animated p,
+        .hero.animated .hero-buttons {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--secondary-color);
+            color: var(--white);
+            padding: 12px 30px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .btn:hover::before {
+            left: 100%;
+        }
+        
+        .btn:hover {
+            background-color: var(--accent-color);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--white);
+            margin-left: 15px;
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--white);
+            color: var(--primary-color);
+        }
+        
+        /* Sobre */
+        .sobre {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            color: var(--primary-color);
+            position: relative;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+        
+        .section-title.animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 3px;
+            background-color: var(--secondary-color);
+            margin: 10px auto;
+            transform: scaleX(0);
+            transition: transform 0.8s ease 0.5s;
+        }
+        
+        .section-title.animated::after {
+            transform: scaleX(1);
+        }
+        
+        .sobre-content {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+        
+        .sobre-text {
+            flex: 1;
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: all 0.8s ease;
+        }
+        
+        .sobre-text.animated {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .sobre-img {
+            flex: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            opacity: 0;
+            transform: translateX(50px);
+            transition: all 0.8s ease;
+        }
+        
+        .sobre-img.animated {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .sobre-img img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s;
+        }
+        
+        .sobre-img:hover img {
+            transform: scale(1.05);
+        }
+        
+        /* Produtos */
+        .produtos {
+            padding: 80px 0;
+            background-color: var(--white);
+        }
+        
+        .produtos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .produto-card {
+            background-color: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        
+        .produto-card.animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .produto-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+        
+        .produto-img {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .produto-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .produto-card:hover .produto-img img {
+            transform: scale(1.1);
+        }
+        
+        .produto-info {
+            padding: 20px;
+        }
+        
+        .produto-info h3 {
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+        
+        .produto-preco {
+            font-weight: bold;
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+        }
+        
+        .produto-link {
+            display: inline-block;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+            margin-top: 10px;
+            transition: all 0.3s;
+            position: relative;
+        }
+        
+        .produto-link::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--secondary-color);
+            transition: width 0.3s;
+        }
+        
+        .produto-link:hover::after {
+            width: 100%;
+        }
+        
+        .produto-link:hover {
+            color: var(--secondary-color);
+        }
+        
+        /* Contador de Clientes */
+        .contador-clientes {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 40px 0;
+            text-align: center;
+        }
+        
+        .contador-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+        
+        .contador-item {
+            margin: 15px;
+        }
+        
+        .contador-numero {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .contador-texto {
+            font-size: 1.1rem;
+        }
+        
+        /* Contato */
+        .contato {
+            padding: 80px 0;
+        }
+        
+        .contato-container {
+            display: flex;
+            gap: 40px;
+        }
+        
+        .contato-info {
+            flex: 1;
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: all 0.8s ease;
+        }
+        
+        .contato-info.animated {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .contato-info h3 {
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+        
+        .info-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .info-item i {
+            margin-right: 10px;
+            color: var(--secondary-color);
+            width: 20px;
+        }
+        
+        .info-link {
+            color: var(--text-color);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .info-link:hover {
+            color: var(--secondary-color);
+        }
+        
+        .contato-form {
+            flex: 1;
+            opacity: 0;
+            transform: translateX(50px);
+            transition: all 0.8s ease;
+        }
+        
+        .contato-form.animated {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+        
+        .form-control:focus {
+            border-color: var(--secondary-color);
+            box-shadow: 0 0 0 2px rgba(210, 105, 30, 0.2);
+            outline: none;
+        }
+        
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark-color);
+            color: var(--white);
+            padding: 50px 0 20px;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+        }
+        
+        .footer-column {
+            flex: 1;
+            margin-right: 30px;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+        
+        .footer-column.animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .footer-column h3 {
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--accent-color);
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-column ul li a {
+            color: var(--light-color);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column ul li a:hover {
+            color: var(--accent-color);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            color: var(--white);
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--accent-color);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        /* WhatsApp Fixo */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            background-color: #25D366;
+            color: white;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+            z-index: 100;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: all 0.3s;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(37, 211, 102, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+            }
+        }
+        
+        .whatsapp-float:hover {
+            background-color: #128C7E;
+            transform: scale(1.1);
+            animation: none;
+        }
+        
+        /* Loading */
+        .loading {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--light-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s, visibility 0.5s;
+        }
+        
+        .loading.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+        
+        .loader {
+            width: 80px;
+            height: 80px;
+            border: 5px solid rgba(139, 69, 19, 0.2);
+            border-radius: 50%;
+            border-top-color: var(--primary-color);
+            animation: spin 1s ease-in-out infinite;
+        }
+        
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+        
+        /* Toast Notification */
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 5px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            z-index: 1000;
+            transition: transform 0.5s;
+        }
+        
+        .toast.show {
+            transform: translateX(-50%) translateY(0);
+        }
+        
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+            }
+            
+            nav ul {
+                margin-top: 20px;
+                flex-direction: column;
+                text-align: center;
+                display: none;
+            }
+            
+            nav ul.show {
+                display: flex;
+            }
+            
+            nav ul li {
+                margin: 10px 0;
+            }
+            
+            .mobile-menu {
+                display: block;
+            }
+            
+            .sobre-content {
+                flex-direction: column;
+            }
+            
+            .contato-container {
+                flex-direction: column;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+            }
+            
+            .footer-column {
+                margin-right: 0;
+                margin-bottom: 30px;
+            }
+            
+            .btn-outline {
+                margin-left: 0;
+                margin-top: 15px;
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading -->
+    <div class="loading">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast"></div>
+
+    <!-- WhatsApp Flutuante -->
+    <a href="https://wa.me/5511999999999?text=Olá! Gostaria de fazer um pedido na Padaria Sabor & Tradição" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Header -->
+    <header id="header">
+        <div class="container header-container">
+            <a href="#home" class="logo">
+                <span class="logo-icon">🥖</span>
+                <h1>Padaria Sabor & Tradição</h1>
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="#home">Início</a></li>
+                    <li><a href="#sobre">Sobre</a></li>
+                    <li><a href="#produtos">Produtos</a></li>
+                    <li><a href="#contato">Contato</a></li>
+                    <li><a href="https://www.instagram.com/padariasabor" target="_blank">Instagram</a></li>
+                </ul>
+            </nav>
+            <div class="mobile-menu">☰</div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <h2 id="hero-title">Os melhores pães da cidade</h2>
+            <p id="hero-text">Desde 1985, oferecendo produtos frescos e de qualidade para sua família</p>
+            <div class="hero-buttons">
+                <a href="#produtos" class="btn">Conheça nossos produtos</a>
+                <a href="https://wa.me/5511999999999?text=Olá! Gostaria de fazer um pedido" class="btn btn-outline" target="_blank">
+                    <i class="fab fa-whatsapp"></i> Faça seu pedido
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contador de Clientes -->
+    <section class="contador-clientes">
+        <div class="container contador-container">
+            <div class="contador-item">
+                <div class="contador-numero" data-count="5000">0</div>
+                <div class="contador-texto">Clientes Satisfeitos</div>
+            </div>
+            <div class="contador-item">
+                <div class="contador-numero" data-count="38">0</div>
+                <div class="contador-texto">Anos de Experiência</div>
+            </div>
+            <div class="contador-item">
+                <div class="contador-numero" data-count="50">0</div>
+                <div class="contador-texto">Produtos Diferentes</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sobre -->
+    <section class="sobre" id="sobre">
+        <div class="container">
+            <h2 class="section-title">Nossa História</h2>
+            <div class="sobre-content">
+                <div class="sobre-text">
+                    <p>Fundada em 1985 por João e Maria Silva, a Padaria Sabor & Tradição começou como um pequeno negócio familiar no coração do bairro. Com receitas passadas de geração em geração, nos dedicamos a produzir pães, bolos e salgados com o mesmo carinho e qualidade de antigamente.</p>
+                    <p>Hoje, continuamos sendo uma empresa familiar, mas com uma equipe dedicada que compartilha do nosso amor pela boa padaria. Utilizamos ingredientes selecionados e técnicas tradicionais para garantir que cada produto tenha aquele sabor caseiro que nossos clientes tanto amam.</p>
+                    <p>Nossa missão é proporcionar momentos especiais através dos sabores autênticos da padaria brasileira, sempre com qualidade, tradição e inovação.</p>
+                    <a href="#contato" class="btn" style="margin-top: 20px;">Venha nos visitar</a>
+                </div>
+                <div class="sobre-img">
+                    <img src="https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Interior da padaria">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Produtos -->
+    <section class="produtos" id="produtos">
+        <div class="container">
+            <h2 class="section-title">Nossos Produtos</h2>
+            <div class="produtos-grid">
+                <!-- Produtos serão inseridos aqui via JavaScript -->
+            </div>
+            <div style="text-align: center; margin-top: 40px;">
+                <a href="#contato" class="btn">Ver todos os produtos</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contato -->
+    <section class="contato" id="contato">
+        <div class="container">
+            <h2 class="section-title">Entre em Contato</h2>
+            <div class="contato-container">
+                <div class="contato-info">
+                    <h3>Informações de Contato</h3>
+                    <div class="info-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <a href="https://maps.google.com/?q=Rua+das+Flores,+123+-+Centro,+São+Paulo+-+SP" class="info-link" target="_blank">
+                            Rua das Flores, 123 - Centro, São Paulo - SP
+                        </a>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-phone"></i>
+                        <a href="tel:+551134567890" class="info-link">(11) 3456-7890</a>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-envelope"></i>
+                        <a href="mailto:contato@padariasabor.com.br" class="info-link">contato@padariasabor.com.br</a>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-clock"></i>
+                        <span>Segunda a Sábado: 6h às 20h<br>Domingos e Feriados: 6h às 14h</span>
+                    </div>
+                    
+                    <h3 style="margin-top: 30px;">Siga-nos</h3>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/padariasabor" aria-label="Facebook" target="_blank">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="https://www.instagram.com/padariasabor" aria-label="Instagram" target="_blank">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://wa.me/5511999999999" aria-label="WhatsApp" target="_blank">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                    </div>
+                    
+                    <div style="margin-top: 30px;">
+                        <a href="https://maps.google.com/?q=Rua+das+Flores,+123+-+Centro,+São+Paulo+-+SP" class="btn" target="_blank">
+                            <i class="fas fa-map-marked-alt"></i> Como chegar
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="contato-form">
+                    <h3>Envie uma Mensagem</h3>
+                    <form id="form-contato">
+                        <div class="form-group">
+                            <label for="nome">Nome</label>
+                            <input type="text" id="nome" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">E-mail</label>
+                            <input type="email" id="email" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="telefone">Telefone</label>
+                            <input type="tel" id="telefone" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="mensagem">Mensagem</label>
+                            <textarea id="mensagem" class="form-control" required></textarea>
+                        </div>
+                        <button type="submit" class="btn">Enviar Mensagem</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Padaria Sabor & Tradição</h3>
+                    <p>Desde 1985 oferecendo os melhores produtos de padaria com qualidade e tradição.</p>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/padariasabor" aria-label="Facebook" target="_blank">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="https://www.instagram.com/padariasabor" aria-label="Instagram" target="_blank">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://wa.me/5511999999999" aria-label="WhatsApp" target="_blank">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Links Rápidos</h3>
+                    <ul>
+                        <li><a href="#home">Início</a></li>
+                        <li><a href="#sobre">Sobre Nós</a></li>
+                        <li><a href="#produtos">Produtos</a></li>
+                        <li><a href="#contato">Contato</a></li>
+                        <li><a href="https://wa.me/5511999999999" target="_blank">Faça seu pedido</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Horário de Funcionamento</h3>
+                    <ul>
+                        <li>Segunda a Sábado: 6h às 20h</li>
+                        <li>Domingos e Feriados: 6h às 14h</li>
+                    </ul>
+                    <div style="margin-top: 20px;">
+                        <a href="https://maps.google.com/?q=Rua+das+Flores,+123+-+Centro,+São+Paulo+-+SP" class="btn" target="_blank" style="background-color: transparent; border: 1px solid var(--accent-color);">
+                            <i class="fas fa-directions"></i> Ver no mapa
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Padaria Sabor & Tradição. Todos os direitos reservados.</p>
+                <p style="margin-top: 10px; font-size: 0.9rem;">
+                    Desenvolvido com <i class="fas fa-heart" style="color: #e25555;"></i> para sua padaria
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Dados dos produtos
+        const produtos = [
+            {
+                nome: "Pão de Sal",
+                preco: "R$ 0,50 / unidade",
+                descricao: "O clássico pão de sal, fresquinho e saboroso, perfeito para o café da manhã.",
+                imagem: "https://images.unsplash.com/photo-1549931319-a545dcf3bc73?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+            },
+            {
+                nome: "Pão de Leite",
+                preco: "R$ 0,50 / unidade",
+                descricao: "Pão de leite fofinho e macio, ideal para lanches e café da tarde.",
+                imagem: "https://images.unsplash.com/photo-1585494187199-6d31373d6c1c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+            },
+            {
+                nome: "Bolo de Pretinho",
+                preco: "R$ 8,00 / fatia",
+                descricao: "Delicioso bolo de chocolate escuro, úmido e saboroso.",
+                imagem: "https://images.unsplash.com/photo-1573140247632-f8fd74997d5c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+            },
+            {
+                nome: "Bolo de Cenoura",
+                preco: "R$ 15,00 / inteiro",
+                descricao: "Bolo de cenoura fofinho com cobertura de chocolate.",
+                imagem: "https://images.unsplash.com/photo-1578985545067-d48c3a34b48c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+            },
+            {
+                nome: "Bolo de Mandioca",
+                preco: "R$ 4,00 / fatia",
+                descricao: "Bolo de mandioca tradicional, macio e saboroso.",
+                imagem: "https://images.unsplash.com/photo-1603532648955-039310d9ed75?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+            },
+            {
+                nome: "Pão Doce com Coco",
+                preco: "R$ 1,00 / unidade",
+                descricao: "Pão doce recheado com coco, perfeito para o lanche.",
+                imagem: "https://images.unsplash.com/photo-1608190003443-86ab6f6b83f9?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+            }
+        ];
+
+        // Função para mostrar toast
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.classList.add('show');
+            
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+
+        // Função para animar contadores
+        function animateCounters() {
+            const counters = document.querySelectorAll('.contador-numero');
+            
+            counters.forEach(counter => {
+                const target = parseInt(counter.getAttribute('data-count'));
+                const duration = 2000; // 2 segundos
+                const step = target / (duration / 16); // 60 FPS
+                let current = 0;
+                
+                const timer = setInterval(() => {
+                    current += step;
+                    if (current >= target) {
+                        current = target;
+                        clearInterval(timer);
+                    }
+                    counter.textContent = Math.floor(current);
+                }, 16);
+            });
+        }
+
+        // Função para verificar se elemento está visível na tela
+        function isElementInViewport(el) {
+            const rect = el.getBoundingClientRect();
+            return (
+                rect.top <= (window.innerHeight || document.documentElement.clientHeight) * 0.8 &&
+                rect.bottom >= 0
+            );
+        }
+
+        // Função para animar elementos ao rolar a página
+        function animateOnScroll() {
+            const elements = document.querySelectorAll('.section-title, .sobre
